@@ -307,12 +307,13 @@ runs:
         set +e
 
         echo $PATH
-        echo $(ls -la /opt/actions-runner/_work/_tool)
-        echo $(ls -la .terraform)
         echo $(atmos version)
-        echo $GITHUB_ACTION_PATH/config/atmos_github_summary.yaml
         echo $(which tofu)
-        echo $(which terraform)
+
+        atmos terraform show ${{ inputs.component }} \
+            --stack ${{ inputs.stack }}
+            -input=false \
+            -no-color
 
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
