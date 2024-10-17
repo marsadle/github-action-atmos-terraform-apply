@@ -301,11 +301,11 @@ runs:
         set +e
 
         echo $PATH
-        echo ls -la /opt/actions-runner/_work/_tool
-        echo ls -la .terraform
-        echo atmos version
-        echo which tofu
-        echo which terraform
+        echo echo $(ls -la /opt/actions-runner/_work/_tool)
+        echo echo $(ls -la .terraform)
+        echo echo $(atmos version)
+        echo echo $(which tofu)
+        echo echo $(which terraform)
 
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
