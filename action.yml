@@ -163,12 +163,12 @@ runs:
       shell: bash
       run: |
         STACK_NAME=$(echo "${{ inputs.stack }}" | sed 's#/#_#g')
-        COMPONENT_PATH=$( realpath ${{ fromJson(steps.component.outputs.settings).component-path }})
+        COMPONENT_PATH=${{ fromJson(steps.component.outputs.settings).component-path }}
         COMPONENT_NAME=$(echo "${{ inputs.component }}" | sed 's#/#_#g')
         COMPONENT_SLUG="$STACK_NAME-$COMPONENT_NAME"
-        COMPONENT_CACHE_KEY=$(basename "${{ fromJson(steps.component.outputs.settings).component-path }}")
-        PLAN_FILE="${COMPONENT_PATH}/$COMPONENT_SLUG-${{ inputs.sha }}.planfile"
-        LOCK_FILE="${COMPONENT_PATH}/.terraform.lock.hcl"
+        COMPONENT_CACHE_KEY=$(basename "${{ fromJson(steps.component.outputs.settings).component-path }}") 
+        PLAN_FILE="$( realpath ${COMPONENT_PATH})/$COMPONENT_SLUG-${{ inputs.sha }}.planfile"
+        LOCK_FILE="$( realpath ${COMPONENT_PATH})/.terraform.lock.hcl"
 
         echo "stack_name=$STACK_NAME" >> $GITHUB_OUTPUT
         echo "component_name=$COMPONENT_NAME" >> $GITHUB_OUTPUT
@@ -291,7 +291,7 @@ runs:
       if: ${{ fromJson(steps.component.outputs.settings).enabled }}
       with:
         path: |
-          ${{ steps.vars.outputs.component_path }}/.terraform
+          ./${{ steps.vars.outputs.component_path }}/.terraform
         key: ${{ steps.vars.outputs.cache-key }}
 
     - name: Terraform Apply
