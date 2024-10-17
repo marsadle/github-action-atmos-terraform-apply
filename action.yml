@@ -294,6 +294,12 @@ runs:
           ./${{ steps.vars.outputs.component_path }}/.terraform
         key: ${{ steps.vars.outputs.cache-key }}
 
+    - name: Debug Atmos
+      shell: bash
+      run: |
+        echo $(atmos describe config -f json)
+        echo $ATMOS_CLI_CONFIG_PATH
+
     - name: Debug
       shell: bash
       working-directory: ${{ steps.vars.outputs.component_path }}
