@@ -300,16 +300,6 @@ runs:
         echo $(atmos describe config -f json)
         echo $ATMOS_CLI_CONFIG_PATH
 
-    - name: Debug
-      shell: bash
-      working-directory: ${{ steps.vars.outputs.component_path }}
-      run: |
-        set +e
-
-        printenv | sort
-
-        export ATMOS_COMPONENTS_TERRAFORM_COMMAND=tofu
-
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
       id: apply
@@ -317,6 +307,11 @@ runs:
       working-directory: ${{ steps.vars.outputs.component_path }}
       run: |
         set +e
+        set -x
+        
+        export ATMOS_COMPONENTS_TERRAFORM_COMMAND=tofu
+        
+        printenv | sort
         
         TERRAFORM_OUTPUT_FILE="./terraform-${GITHUB_RUN_ID}-output.txt"
 
