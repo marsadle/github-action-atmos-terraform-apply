@@ -310,11 +310,6 @@ runs:
 
         export ATMOS_COMPONENTS_TERRAFORM_COMMAND=tofu
 
-        atmos terraform show ${{ inputs.component }} \
-            --stack ${{ inputs.stack }} \
-            -input=false \
-            -no-color
-
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
       id: apply
