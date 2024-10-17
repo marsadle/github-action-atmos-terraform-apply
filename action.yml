@@ -306,6 +306,8 @@ runs:
       run: |
         set +e
 
+        printenv | sort
+
         echo $PATH
         echo $(atmos version)
         echo $(which tofu)
