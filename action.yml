@@ -301,11 +301,12 @@ runs:
         set +e
 
         echo $PATH
-        echo echo $(ls -la /opt/actions-runner/_work/_tool)
-        echo echo $(ls -la .terraform)
-        echo echo $(atmos version)
-        echo echo $(which tofu)
-        echo echo $(which terraform)
+        echo $(ls -la /opt/actions-runner/_work/_tool)
+        echo $(ls -la .terraform)
+        echo $(atmos version)
+        echo $GITHUB_ACTION_PATH/config/atmos_github_summary.yaml
+        echo $(which tofu)
+        echo $(which terraform)
 
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
