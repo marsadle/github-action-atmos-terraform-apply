@@ -294,6 +294,16 @@ runs:
           ./${{ steps.vars.outputs.component_path }}/.terraform
         key: ${{ steps.vars.outputs.cache-key }}
 
+    - name: Debug
+      run: |
+        set +e
+
+        echo $PATH
+        echo ls -la /opt/actions-runner/_work/_tool
+        echo atmos version
+        echo which tofu
+        echo which terraform
+
     - name: Terraform Apply
       if: env.ACTIONS_ENABLED == 'true'
       id: apply
