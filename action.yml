@@ -308,12 +308,10 @@ runs:
 
         printenv | sort
 
-        echo $PATH
-        echo $(atmos version)
-        echo $(which tofu)
+        export ATMOS_COMPONENTS_TERRAFORM_COMMAND=tofu
 
         atmos terraform show ${{ inputs.component }} \
-            --stack ${{ inputs.stack }}
+            --stack ${{ inputs.stack }} \
             -input=false \
             -no-color
 
