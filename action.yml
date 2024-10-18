@@ -309,7 +309,7 @@ runs:
         set +e
         set -x
         
-        export ATMOS_COMPONENTS_TERRAFORM_COMMAND=tofu
+        export ATMOS_LOGS_LEVEL=Trace
         
         printenv | sort
         
