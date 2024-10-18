@@ -309,9 +309,17 @@ runs:
         set +e
         set -x
         
-        export ATMOS_LOGS_LEVEL=Trace
-        
         printenv | sort
+        
+        echo "====== ATMOS_BASE_PATH =================================================================================================="
+        echo "ls -la ${ATMOS_BASE_PATH}"
+        ls -la $ATMOS_BASE_PATH
+        echo "====== ATMOS_CLI_CONFIG_PATH ============================================================================================"
+        echo "ls -la ${ATMOS_CLI_CONFIG_PATH}"
+        ls -la $ATMOS_CLI_CONFIG_PATH
+        echo "========================================================================================================================="
+        
+        export ATMOS_LOGS_LEVEL=Trace
         
         TERRAFORM_OUTPUT_FILE="./terraform-${GITHUB_RUN_ID}-output.txt"
 
